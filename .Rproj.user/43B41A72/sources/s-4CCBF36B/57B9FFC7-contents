@@ -7,10 +7,12 @@ categories:
   - R
   - Shiny
   - Data Science
+  - Docker
 tags:
   - R
   - Shiny
   - Data Science
+  - Docker
 ---
 
 This document contains an example Dockerfile configured for deploying Shiny apps on ShinyProxy. The key is to properly configure the shiny `port` and `host`.
