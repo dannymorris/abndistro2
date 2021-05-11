@@ -16,11 +16,11 @@ menu:
     - name: Home
       url: ""
       weight: 1
-    - name: About Me
-      url: "about/"
+    - name: Projects
+      url: "projects/"
       weight: 2
     - name: Docs
-      url: "categories/"
+      url: "post/"
       weight: 3
     - name: Tags
       url: "tags/"

@@ -6,11 +6,20 @@
     <description>Recent content in Categories on Abnormal Distributions</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>API</title>
+      <link>https://abndistro.com/categories/api/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/api/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AWS</title>
       <link>https://abndistro.com/categories/aws/</link>
-      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://abndistro.com/categories/aws/</guid>
       <description></description>
@@ -19,18 +28,90 @@
     <item>
       <title>Data Science</title>
       <link>https://abndistro.com/categories/data-science/</link>
-      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://abndistro.com/categories/data-science/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Docker</title>
+      <link>https://abndistro.com/categories/docker/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://abndistro.com/categories/lambda/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>https://abndistro.com/categories/python/</link>
-      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://abndistro.com/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>https://abndistro.com/categories/r/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://abndistro.com/categories/serverless/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>https://abndistro.com/categories/shiny/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://abndistro.com/categories/javascript/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Computer Vision</title>
+      <link>https://abndistro.com/categories/computer-vision/</link>
+      <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/computer-vision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://abndistro.com/categories/c&#43;&#43;/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     

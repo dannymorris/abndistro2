@@ -1,0 +1,141 @@
+---
+title: Using Serverless Framework to deploy AWS Lambda functions with custom Python deployment packages
+author: Danny Morris
+date: '2021-05-11'
+slug: using-serverless-framework-to-deploy-an-aws-lambda-function-with-a-custom-deployment-package
+output: 
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    highlight: pygments
+categories:
+  - AWS
+  - Lambda
+  - API
+  - Python
+  - Serverless
+tags:
+  - AWS
+  - Lambda
+  - API
+  - Python
+  - Serverless
+---
+
+```{r, include=F}
+knitr::opts_chunk$set(eval=F) 
+```
+
+## Overview
+
+This document shows how to configure a Serverless Framework project to deploy AWS Lambda functions that use custom Python deployment packages. This basic uses deploys a function requiring the `statsmodels` package.
+
+## Sample application structure
+
+```
+app
+└───app.py
+└───test.json
+└───requirements.txt
+└───Dockerfile
+└───serverless.yml
+```
+
+## Create Serverless Framework project
+
+```{bash}
+serverless create --template python aws-python3 --name statsmodel --path statsmodel
+```
+
+## app.py
+
+```{python}
+import statsmodels.api as sm
+import random
+import json
+
+def run_linear_regression(event, context):
+    n_samples = event['N']
+    x = list(range(0,n_samples))
+    x = sm.add_constant(x)
+    y = random.sample(range(0,100),n_samples)
+    results = sm.OLS(y, x).fit()   
+    params = list(results.params)
+    response = {
+        "statusCode": 200,
+        "body": json.dumps(params)
+    }
+    print(response)
+    return(response)
+```
+
+## test.json
+
+```{bash}
+{"N": 30}
+```
+
+## requirements.txt
+
+```
+statsmodels
+```
+
+## Dockerfile
+
+```{bash}
+# Start with Python 3.7 image which replicates the Lambda environment
+FROM lambci/lambda:build-python3.7
+
+# Create a virtual env
+ENV VIRTUAL_ENV=venv
+ENV PATH $VIRTUAL_ENV/bin:$PATH
+RUN python3 -m venv $VIRTUAL_ENV
+
+# Install Python packages using pip
+COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Copy function code to the image
+WORKDIR /var/task/venv/lib/python3.7/site-packages
+COPY app.py .
+
+# Zip the deployment package
+RUN zip -9qr statsmodel-package.zip *
+```
+
+### Build docker image and export the deployment package
+
+```{bash}
+sudo docker build --no-cache -t statsmodel-package . && 
+sudo docker run --rm -v $PWD:/export statsmodel-package cp statsmodel-package.zip /export
+```
+
+## serverless.yml
+
+```{bash}
+service: statsmodel
+
+provider:
+  name: aws
+  runtime: python3.7
+  deploymentBucket: <S3-BUCKET>
+  
+functions:
+  run_linear_regression:
+    handler: app.run_linear_regression
+    memorySize: 128
+    timeout: 15
+    role: <IAM-ROLE>
+    
+package:
+    artifact: statsmodel-package.zip
+```
+
+## Deploy function
+
+```{bash}
+serverless deploy
+```
+

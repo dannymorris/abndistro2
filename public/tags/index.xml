@@ -6,11 +6,20 @@
     <description>Recent content in Tags on Abnormal Distributions</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>API</title>
+      <link>https://abndistro.com/tags/api/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/api/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AWS</title>
       <link>https://abndistro.com/tags/aws/</link>
-      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://abndistro.com/tags/aws/</guid>
       <description></description>
@@ -19,18 +28,90 @@
     <item>
       <title>Data Science</title>
       <link>https://abndistro.com/tags/data-science/</link>
-      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://abndistro.com/tags/data-science/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Docker</title>
+      <link>https://abndistro.com/tags/docker/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://abndistro.com/tags/lambda/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>https://abndistro.com/tags/python/</link>
-      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://abndistro.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>https://abndistro.com/tags/r/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://abndistro.com/tags/serverless/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>https://abndistro.com/tags/shiny/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://abndistro.com/tags/javascript/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Computer Vision</title>
+      <link>https://abndistro.com/tags/computer-vision/</link>
+      <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/computer-vision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://abndistro.com/tags/c&#43;&#43;/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     

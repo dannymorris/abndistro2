@@ -6,9 +6,18 @@
     <description>Recent content in Data Science on Abnormal Distributions</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Distributed training on AWS using Python and boto3</title>
+      <title>Sample Dockerfile for deploying R Shiny apps on ShinyProxy</title>
+      <link>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Distributed training using AWS, Python, and boto3</title>
       <link>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</link>
       <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
       
@@ -18,7 +27,7 @@ This post outlines the basic steps required to run a distributed machine learnin
     </item>
     
     <item>
-      <title>Object detection using AWS and GluonCV</title>
+      <title>Object detection using AWS, Python, and GluonCV</title>
       <link>https://abndistro.com/post/2019/12/07/object-detection-using-aws-and-gluoncv/</link>
       <pubDate>Sat, 07 Dec 2019 00:00:00 +0000</pubDate>
       

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Abnormal Distributions</title>
+    <link>https://abndistro.com/tags/docker/</link>
+    <description>Recent content in Docker on Abnormal Distributions</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sample Dockerfile for deploying R Shiny apps on ShinyProxy</title>
+      <link>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } .sourceCode { overflow: visible; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.</description>
+    </item>
+    
+  </channel>
+</rss>

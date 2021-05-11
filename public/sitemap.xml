@@ -2,42 +2,111 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://abndistro.com/tags/api/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/api/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://abndistro.com/tags/aws/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/categories/aws/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/categories/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/tags/data-science/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/categories/data-science/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <loc>https://abndistro.com/tags/docker/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abndistro.com/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <loc>https://abndistro.com/categories/docker/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/post/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/lambda/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/lambda/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/tags/python/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/categories/python/</loc>
-    <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/r/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/r/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/serverless/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/serverless/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/shiny/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/shiny/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/tags/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/post/2021/05/11/using-serverless-framework-to-deploy-an-aws-lambda-function-with-a-custom-deployment-package/</loc>
+    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</loc>
     <lastmod>2020-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/post/2019/12/07/object-detection-using-aws-and-gluoncv/</loc>
     <lastmod>2019-12-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abndistro.com/about/</loc>
+    <loc>https://abndistro.com/post/2019/07/15/http-post-request-using-node-js/</loc>
+    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/javascript/</loc>
+    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/javascript/</loc>
+    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/computer-vision/</loc>
+    <lastmod>2019-07-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/computer-vision/</loc>
+    <lastmod>2019-07-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/post/2019/07/07/detecting-image-differences-using-python-and-opencv/</loc>
+    <lastmod>2019-07-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/c&#43;&#43;/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/c&#43;&#43;/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/post/2019/07/01/finding-row-wise-maximum-values-in-sparse-matrix-using-rcpp/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/projects/</loc>
   </url>
 </urlset>

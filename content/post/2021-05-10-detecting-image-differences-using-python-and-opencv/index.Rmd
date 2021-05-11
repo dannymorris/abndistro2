@@ -18,6 +18,8 @@ tags:
 knitr::opts_chunk$set(eval=F) 
 ```
 
+## Overview
+
 This post was inspired by [this post](https://www.pyimagesearch.com/2017/06/19/image-difference-with-opencv-and-python/) written by [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/) of [PyImageSearch](https://www.pyimagesearch.com/about/).
 
 This document shows how to detect differences between two images using Python and OpenCV.
