@@ -14,7 +14,7 @@ tags:
   - Computer Vision
 ---
 
-```{r}
+```{r, include=F}
 knitr::opts_chunk$set(eval=F) 
 ```
 
