@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Abnormal Distributions</title>
+    <link>https://abndistro.com/post/</link>
+    <description>Recent content in Posts on Abnormal Distributions</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Distributed training on AWS using Python and boto3</title>
+      <link>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</link>
+      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</guid>
+      <description>Overview I recently participated in the M5 Forecasting - Accuracy Kaggle competition to forecast daily sales for over 30,000 WalMart products. I had some initial struggles processing the data and training models in-memory, so I eventually turned to running distributed training jobs using AWS SageMaker.
+This post outlines the basic steps required to run a distributed machine learning job on AWS using the SageMaker SDK in Python. The steps are broken down into the following:</description>
+    </item>
+    
+    <item>
+      <title>Object detection using AWS and GluonCV</title>
+      <link>https://abndistro.com/post/2019/12/07/object-detection-using-aws-and-gluoncv/</link>
+      <pubDate>Sat, 07 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2019/12/07/object-detection-using-aws-and-gluoncv/</guid>
+      <description>This post briefly describes how I built an object detection model using AWS SageMaker and GluonCV to detect Blue Cross Blue Shield logos. Full code and notebooks can be found in the GitHub repo.
+Collecting and preparing training images To collect images for training, I searched Google for &amp;ldquo;bluecross blueshied logo&amp;rdquo;, &amp;ldquo;bluecross blueshield letter&amp;rdquo;, &amp;ldquo;bluecross blueshield building&amp;rdquo;, &amp;ldquo;bluecross blueshield shirt&amp;rdquo;, &amp;ldquo;bluecross blueshield event&amp;rdquo;, &amp;ldquo;bluecross blueshield shirt&amp;rdquo;, and &amp;ldquo;bluecross blueshield bus&amp;rdquo;. I ended up with 400 images for training and validation.</description>
+    </item>
+    
+  </channel>
+</rss>

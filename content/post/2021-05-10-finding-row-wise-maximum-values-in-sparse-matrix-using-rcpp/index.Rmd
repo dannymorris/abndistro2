@@ -1,0 +1,86 @@
+---
+title: Finding row-wise maximum values in a sparse matrix using Rcpp
+author: Danny Morris
+date: '2019-07-01'
+slug: finding-row-wise-maximum-values-in-sparse-matrix-using-rcpp
+output: 
+  blogdown::html_page:
+    highlight: pygments
+categories:
+  - R
+  - C++
+tags:
+  - R
+  - C++
+---
+
+```{r}
+knitr::opts_chunk$set(eval=F) 
+```
+
+This document demonstrates how to extract maximum values for each row in a sparse matrix using RcppArmadillo for speed and efficiency.
+
+
+```{r, warning = F}
+library(Matrix)
+library(Rcpp)
+library(RcppArmadillo)
+library(magrittr)
+```
+
+A sample sparse matrix implemented in the Matrix pacakge. 
+
+```{r}
+i <- c(1,3:8) 
+j <- c(2,9,6:10)
+x <- 7 * (1:7)
+sparse_matrix <- sparseMatrix(i, j, x = x) 
+```
+
+# Using Inline Functions
+
+```{r}
+# locate maximum value
+rowwise_max <- Rcpp::cppFunction(
+  "arma::sp_mat sp_row_max(arma::sp_mat X) {
+   return arma::max(X, 1);
+  }", depends= "RcppArmadillo"
+)
+
+# locate position of maximum value
+rowwise_max_idx <- Rcpp::cppFunction(
+  "arma::urowvec sp_row_max_id(arma::sp_mat X) {
+   return arma::index_max(X.t(), 0);
+  }", depends= "RcppArmadillo"
+)
+```
+
+```{r}
+rowwise_max(sparse_matrix) %>% as.vector()
+rowwise_max_idx(sparse_matrix) %>% as.vector()
+```
+
+# Sourcing a .cpp File
+
+`rowwise_max.cpp`
+
+```{Rcpp}
+# include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+using namespace Rcpp;
+using namespace arma;
+// [[Rcpp::export]]
+arma::urowvec rowwise_max(arma::sp_mat X) {
+  return arma::index_max(X, 1);
+}
+// [[Rcpp::export]]
+arma::sp_mat rowwise_max_idx(arma::sp_mat X) {
+  return arma::max(X.t(), 0);
+}
+```
+
+```{r}
+source("rowwise_max.cpp")
+rowwise_max(sparse_matrix) %>% as.vector()
+rowwise_max_idx(sparse_matrix) %>% as.vector()
+```

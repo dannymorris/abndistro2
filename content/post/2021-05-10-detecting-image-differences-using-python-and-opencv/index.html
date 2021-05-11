@@ -1,0 +1,163 @@
+---
+title: Detecting image differences using Python and OpenCV
+author: Danny Morris
+date: '2019-07-07'
+slug: detecting-image-differences-using-python-and-opencv
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+categories:
+  - Python
+  - Computer Vision
+tags:
+  - Computer Vision
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#python-packages">Python packages</a></li>
+<li><a href="#read-and-resize-images">Read and resize images</a></li>
+<li><a href="#convert-images-to-grayscale">Convert images to grayscale</a></li>
+<li><a href="#compute-structural-similarity-index-between-images-and-obtain-difference-image">Compute Structural Similarity Index between images and obtain difference image</a></li>
+<li><a href="#obtain-image-contours">Obtain image contours</a></li>
+<li><a href="#plot-image-differences">Plot image differences</a></li>
+</ul>
+</div>
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval=</span>F) </span></code></pre></div>
+<p>This post was inspired by <a href="https://www.pyimagesearch.com/2017/06/19/image-difference-with-opencv-and-python/">this post</a> written by <a href="https://www.pyimagesearch.com/author/adrian/">Adrian Rosebrock</a> of <a href="https://www.pyimagesearch.com/about/">PyImageSearch</a>.</p>
+<p>This document shows how to detect differences between two images using Python and OpenCV.</p>
+<div id="python-packages" class="section level2">
+<h2>Python packages</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.measure <span class="im">import</span> compare_ssim</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> imutils</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.image <span class="im">as</span> mpimg</span></code></pre></div>
+</div>
+<div id="read-and-resize-images" class="section level2">
+<h2>Read and resize images</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the two input images</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>image_orig <span class="op">=</span> cv2.imread(<span class="st">&quot;credit-card-original.PNG&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>image_mod <span class="op">=</span> cv2.imread(<span class="st">&quot;credit-card-modified.PNG&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># resize for faster processing</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>resized_orig <span class="op">=</span> cv2.resize(image_orig, (<span class="dv">300</span>, <span class="dv">200</span>))    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>resized_mod <span class="op">=</span> cv2.resize(image_mod, (<span class="dv">300</span>, <span class="dv">200</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.imshow(resized_orig)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.imshow(resized_mod)</span></code></pre></div>
+<p><img src="https://imgur.com/O8D3fAC.png" /></p>
+<p><img src="https://imgur.com/5xEX5Fg.png" /></p>
+</div>
+<div id="convert-images-to-grayscale" class="section level2">
+<h2>Convert images to grayscale</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gray_orig <span class="op">=</span> cv2.cvtColor(resized_orig, cv2.COLOR_BGR2GRAY)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gray_mod <span class="op">=</span> cv2.cvtColor(resized_mod, cv2.COLOR_BGR2GRAY)</span></code></pre></div>
+</div>
+<div id="compute-structural-similarity-index-between-images-and-obtain-difference-image" class="section level2">
+<h2>Compute Structural Similarity Index between images and obtain difference image</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(score, diff) <span class="op">=</span> compare_ssim(gray_orig, gray_mod, full<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> (diff <span class="op">*</span> <span class="dv">255</span>).astype(<span class="st">&quot;uint8&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Structural Similarity Index: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(score))</span></code></pre></div>
+<p><code>## Structural Similarity Index: 0.9537481523548417</code></p>
+</div>
+<div id="obtain-image-contours" class="section level2">
+<h2>Obtain image contours</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># threshold the difference image, followed by finding contours to</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain the regions of the two input images that differ</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>thresh <span class="op">=</span> cv2.threshold(diff, <span class="dv">0</span>, <span class="dv">25</span>, cv2.THRESH_BINARY_INV <span class="op">|</span> cv2.THRESH_OTSU)[<span class="dv">1</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>cnts <span class="op">=</span> cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>cnts <span class="op">=</span> imutils.grab_contours(cnts)</span></code></pre></div>
+</div>
+<div id="plot-image-differences" class="section level2">
+<h2>Plot image differences</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loop over the contours</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cnts:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the bounding box of the contour and then draw the</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bounding box on both input images to represent where the two</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># images differ</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    (x, y, w, h) <span class="op">=</span> cv2.boundingRect(c)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    cv2.rectangle(resized_orig, (x, y), (x <span class="op">+</span> w, y <span class="op">+</span> h), (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>), <span class="dv">2</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    cv2.rectangle(resized_mod, (x, y), (x <span class="op">+</span> w, y <span class="op">+</span> h), (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>), <span class="dv">2</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># show the output images</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.imshow(<span class="st">&quot;Original&quot;</span>, resized_orig)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.imshow(<span class="st">&quot;Modified&quot;</span>, resized_mod)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>cv2.imshow(<span class="st">&quot;Diff&quot;</span>, diff)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>cv2.imshow(<span class="st">&quot;Thresh&quot;</span>, thresh)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>cv2.waitKey(<span class="dv">0</span>)</span></code></pre></div>
+<p><img src="https://imgur.com/Yv8uaBV.png" /></p>
+<p><img src="https://imgur.com/xYjb3AL.png" /></p>
+</div>

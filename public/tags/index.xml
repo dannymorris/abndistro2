@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Abnormal Distributions</title>
+    <link>https://abndistro.com/tags/</link>
+    <description>Recent content in Tags on Abnormal Distributions</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS</title>
+      <link>https://abndistro.com/tags/aws/</link>
+      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Science</title>
+      <link>https://abndistro.com/tags/data-science/</link>
+      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/data-science/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://abndistro.com/tags/python/</link>
+      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,9 @@
+{
+    "sortOrder": [
+        {
+            "columnIndex": 2,
+            "ascending": true
+        }
+    ],
+    "path": "~/projects/abndistro2/content/post/2020-07-03-distributed-training-aws-using-python-and-boto3"
+}

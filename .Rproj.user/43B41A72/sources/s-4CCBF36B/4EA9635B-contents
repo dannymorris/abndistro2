@@ -1,0 +1,106 @@
+---
+title: Detecting image differences using Python and OpenCV
+author: Danny Morris
+date: '2019-07-07'
+slug: detecting-image-differences-using-python-and-opencv
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+categories:
+  - Python
+  - Computer Vision
+tags:
+  - Computer Vision
+---
+
+```{r}
+knitr::opts_chunk$set(eval=F) 
+```
+
+This post was inspired by [this post](https://www.pyimagesearch.com/2017/06/19/image-difference-with-opencv-and-python/) written by [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/) of [PyImageSearch](https://www.pyimagesearch.com/about/).
+
+This document shows how to detect differences between two images using Python and OpenCV.
+
+## Python packages
+
+```{python}
+from skimage.measure import compare_ssim
+import argparse
+import imutils
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+```
+
+## Read and resize images
+
+```{python}
+# load the two input images
+image_orig = cv2.imread("credit-card-original.PNG")
+image_mod = cv2.imread("credit-card-modified.PNG")
+
+# resize for faster processing
+resized_orig = cv2.resize(image_orig, (300, 200))    
+resized_mod = cv2.resize(image_mod, (300, 200))
+
+plt.imshow(resized_orig)
+plt.imshow(resized_mod)
+```
+
+![](https://imgur.com/O8D3fAC.png)
+
+![](https://imgur.com/5xEX5Fg.png)
+
+## Convert images to grayscale
+
+```{python}
+gray_orig = cv2.cvtColor(resized_orig, cv2.COLOR_BGR2GRAY)
+gray_mod = cv2.cvtColor(resized_mod, cv2.COLOR_BGR2GRAY)
+```
+
+## Compute Structural Similarity Index between images and obtain difference image
+
+```{python}
+(score, diff) = compare_ssim(gray_orig, gray_mod, full=True)
+diff = (diff * 255).astype("uint8")
+print("Structural Similarity Index: {}".format(score))
+```
+
+`## Structural Similarity Index: 0.9537481523548417`
+
+## Obtain image contours
+
+```{python}
+# threshold the difference image, followed by finding contours to
+# obtain the regions of the two input images that differ
+thresh = cv2.threshold(diff, 0, 25, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+
+cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+cnts = imutils.grab_contours(cnts)
+```
+
+## Plot image differences
+
+```{python, eval = F}
+# loop over the contours
+for c in cnts:
+# compute the bounding box of the contour and then draw the
+# bounding box on both input images to represent where the two
+# images differ
+    (x, y, w, h) = cv2.boundingRect(c)
+    cv2.rectangle(resized_orig, (x, y), (x + w, y + h), (0, 0, 255), 2)
+    cv2.rectangle(resized_mod, (x, y), (x + w, y + h), (0, 0, 255), 2)
+ 
+# show the output images
+plt.imshow("Original", resized_orig)
+plt.imshow("Modified", resized_mod)
+cv2.imshow("Diff", diff)
+cv2.imshow("Thresh", thresh)
+cv2.waitKey(0)
+```
+
+![](https://imgur.com/Yv8uaBV.png)
+
+![](https://imgur.com/xYjb3AL.png)
