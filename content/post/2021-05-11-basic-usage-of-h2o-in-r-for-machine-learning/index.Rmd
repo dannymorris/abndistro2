@@ -1,0 +1,12 @@
+---
+title: Basic usage of H2O in R for machine learning
+author: Danny Morris
+date: '2021-05-11'
+slug: basic-usage-of-h2o-in-r-for-machine-learning
+categories:
+  - R
+  - Data Science
+tags:
+  - R
+  - Data Science
+---
