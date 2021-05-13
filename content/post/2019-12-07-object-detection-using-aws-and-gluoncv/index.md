@@ -7,9 +7,11 @@ categories:
   - AWS
   - Data Science
   - Python
+  - Deep Learning
 tags:
   - AWS
   - Data Science
+  - Deep Learning
   - Python
 ---
 

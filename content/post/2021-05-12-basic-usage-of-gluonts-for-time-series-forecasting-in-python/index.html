@@ -1,5 +1,5 @@
 ---
-title: Basic usage of GluonTS for time series forecasting in Python
+title: Basic usage of GluonTS for probabilistic, deep learning-based time series forecasting
 author: Danny Morris
 date: '2021-05-12'
 slug: basic-usage-of-gluonts-for-time-series-forecasting-in-python
@@ -8,14 +8,29 @@ categories:
   - Time Series
   - Data Science
   - Machine Learning
+  - Deep Learning
 tags:
   - Python
   - Time Series
   - Data Science
   - Machine Learning
+  - Deep Learning
 ---
 
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
-<p><a href="https://colab.research.google.com/drive/1zC7pSyRTC3jdtPtZypTokhHrKXZZDHtW?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>GluonTS is a deep learning-based framework for probabilisitc time series modeling and forecasting. As mentioned in the <a href="https://arxiv.org/pdf/1906.05264.pdf">paper</a>, deep learning models improve upon traditional univariate models (e.g. Arima) with their ability to train a single, global model over an entire collection of time series.</p>
+</div>
+<div id="takeaways-from-my-experiment" class="section level2">
+<h2>Takeaways from my experiment</h2>
+<ul>
+<li><p>Using a simple <a href="https://ts.gluon.ai/api/gluonts/gluonts.model.simple_feedforward.html">feedforward MLP</a> neural network, training and inference for 152 time series (each with 441 time steps) required about 7 seconds in total.</p></li>
+<li><p>The API is generally simple, though the documentation needs work.</p></li>
+<li><p>Probabilistic forecast intervals combined with deep learning make GluonTS highly appealing.</p></li>
+<li><p>Based on the use case documented in the notebook, impressive predictive accuracy appears attainable using the simple feedforward MLP with default model parameters.</p></li>
+</ul>
+<p>View my notebook here - <a href="https://colab.research.google.com/drive/1zC7pSyRTC3jdtPtZypTokhHrKXZZDHtW?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+</div>

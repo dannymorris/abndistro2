@@ -1,5 +1,5 @@
 ---
-title: Basic usage of GluonTS for time series forecasting in Python
+title: Basic usage of GluonTS for probabilistic, deep learning-based time series forecasting
 author: Danny Morris
 date: '2021-05-12'
 slug: basic-usage-of-gluonts-for-time-series-forecasting-in-python
@@ -8,11 +8,27 @@ categories:
   - Time Series
   - Data Science
   - Machine Learning
+  - Deep Learning
 tags:
   - Python
   - Time Series
   - Data Science
   - Machine Learning
+  - Deep Learning
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zC7pSyRTC3jdtPtZypTokhHrKXZZDHtW?usp=sharing)
+## Overview
+
+GluonTS is a deep learning-based framework for probabilisitc time series modeling and forecasting. As mentioned in the [paper](https://arxiv.org/pdf/1906.05264.pdf), deep learning models improve upon traditional univariate models (e.g. Arima) with their ability to train a single, global model over an entire collection of time series. 
+
+## Takeaways from my experiment
+
+- Using a simple [feedforward MLP](https://ts.gluon.ai/api/gluonts/gluonts.model.simple_feedforward.html) neural network, training and inference for 152 time series (each with 441 time steps) required about 7 seconds in total.
+
+- The API is generally simple, though the documentation needs work.
+
+- Probabilistic forecast intervals combined with deep learning make GluonTS highly appealing.
+
+- Based on the use case documented in the notebook, impressive predictive accuracy appears attainable using the simple feedforward MLP with default model parameters.
+
+View my notebook here - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zC7pSyRTC3jdtPtZypTokhHrKXZZDHtW?usp=sharing)
