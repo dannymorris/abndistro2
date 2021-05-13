@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-time-series-forecasting-in-python/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/data-science/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/data-science/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/deep-learning/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/deep-learning/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/post/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/machine-learning/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/machine-learning/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/python/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/python/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/time-series/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/time-series/</loc>
+    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://abndistro.com/tags/api/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
@@ -14,13 +59,7 @@
     <loc>https://abndistro.com/categories/aws/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abndistro.com/categories/</loc>
-    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abndistro.com/tags/data-science/</loc>
-    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abndistro.com/categories/data-science/</loc>
+    <loc>https://abndistro.com/post/2021/05/11/basic-usage-of-h2o-in-r-for-machine-learning/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/tags/docker/</loc>
@@ -29,22 +68,10 @@
     <loc>https://abndistro.com/categories/docker/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abndistro.com/post/</loc>
-    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abndistro.com/</loc>
-    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://abndistro.com/tags/lambda/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/categories/lambda/</loc>
-    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abndistro.com/tags/python/</loc>
-    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abndistro.com/categories/python/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/tags/r/</loc>
@@ -68,14 +95,23 @@
     <loc>https://abndistro.com/categories/shiny/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abndistro.com/tags/</loc>
-    <lastmod>2021-05-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://abndistro.com/post/2021/05/11/using-serverless-framework-to-deploy-an-aws-lambda-function-with-a-custom-deployment-package/</loc>
     <lastmod>2021-05-11T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://abndistro.com/post/2020/07/08/my-top-6-solution-in-the-kaggle-m5-forecasting-accuracy-competition-using-a-machine-learning-ensemble/</loc>
+    <lastmod>2020-07-08T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</loc>
     <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/post/2020/06/07/a-supervised-learning-strategy-for-detecting-rare-classes-using-data-centric-ensembling/</loc>
+    <lastmod>2020-06-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/tags/outlier-analysis/</loc>
+    <lastmod>2020-06-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abndistro.com/categories/outlier-analysis/</loc>
+    <lastmod>2020-06-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abndistro.com/post/2019/12/07/object-detection-using-aws-and-gluoncv/</loc>
     <lastmod>2019-12-07T00:00:00+00:00</lastmod>

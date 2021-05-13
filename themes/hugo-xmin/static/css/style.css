@@ -1,8 +1,9 @@
 body {
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
   padding: 1em;
   line-height: 1.5em;
+  font-size: 110% !important;
 }
 
 /* header and footer areas */
@@ -21,6 +22,9 @@ hr {
   border-style: dashed;
   color: #ddd;
 }
+
+/* li spacing */
+li {margin: 5px 0}
 
 /* code */
 pre {

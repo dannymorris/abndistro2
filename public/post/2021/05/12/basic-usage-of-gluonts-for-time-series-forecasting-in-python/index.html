@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic usage of GluonTS for probabilistic, deep learning-based time series forecasting | Abnormal Distributions</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/projects/">Projects</a></li>
+      
+      <li><a href="/post/">Docs</a></li>
+      
+      <li><a href="/tags/">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Basic usage of GluonTS for probabilistic, deep learning-based time series forecasting</span></h1>
+<h2 class="author">Danny Morris</h2>
+<h2 class="date">2021/05/12</h2>
+</div>
+
+<main>
+
+<script src="https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-time-series-forecasting-in-python/index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>View notebook in GitHub - <a href="https://github.com/dannymorris/abndistro2/blob/master/notebooks/gluonts.ipynb" class="uri">https://github.com/dannymorris/abndistro2/blob/master/notebooks/gluonts.ipynb</a></p>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>GluonTS is a deep learning-based framework for probabilisitc time series modeling and forecasting. As mentioned in the <a href="https://arxiv.org/pdf/1906.05264.pdf">paper</a>, deep learning models improve upon traditional univariate models (e.g. Arima) with their ability to train a single, global model over an entire collection of time series.</p>
+</div>
+<div id="takeaways-from-my-experience-getting-started" class="section level2">
+<h2>Takeaways from my experience getting started</h2>
+<ul>
+<li><p>Training and inference for all 152 time series required about 2 minutes in total using the <a href="https://ts.gluon.ai/api/gluonts/gluonts.model.deepar.html">DeepAR</a> estimator and CPUs provided by Google Colab. Using the simple <a href="https://ts.gluon.ai/api/gluonts/gluonts.model.simple_feedforward.html">feedforward MLP</a> estimator, the total time was around 7 seconds.</p></li>
+<li><p>Simple API</p></li>
+<li><p>Probabilistic forecast intervals combined with deep learning differentiate GluonTS from other machine learning algorithms which are only capable of producing point forecasts.</p></li>
+<li><p>Despite variance in scale and seasonality across all time series, impressive predictive accuracy was achieved without feature engineering or hyperparameter tuning.</p></li>
+</ul>
+</div>
+
+</main>
+
+  <footer>
+  <script src="//yihui.org/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.org/js/center-img.js"></script>
+
+  
+  <hr/>
+  <a href="https://github.com/dannymorris">GitHub</a> | <a href="https://www.linkedin.com/in/drmorris87/">LinkedIn</a> | <a href="mailto:usc00@hotmail.com">Email</a>
+  
+  </footer>
+  </body>
+</html>
+

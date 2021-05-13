@@ -102,18 +102,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="TOC">
 <ul>
+<li><a href="#overview">Overview</a></li>
 <li><a href="#sample-application-structure">Sample application structure</a></li>
 <li><a href="#create-serverless-framework-project">Create Serverless Framework project</a></li>
 <li><a href="#app.py">app.py</a></li>
 <li><a href="#test.json">test.json</a></li>
 <li><a href="#requirements.txt">requirements.txt</a></li>
 <li><a href="#dockerfile">Dockerfile</a></li>
-<li><a href="#build-docker-image-and-export-the-deployment-package">Build docker image and export the deployment package</a></li>
 <li><a href="#serverless.yml">serverless.yml</a></li>
 <li><a href="#deploy-function">Deploy function</a></li>
 </ul>
 </div>
 
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>This document shows how to configure a Serverless Framework project to deploy AWS Lambda functions that use custom Python deployment packages. This basic uses deploys a function requiring the <code>statsmodels</code> package.</p>
+</div>
 <div id="sample-application-structure" class="section level2">
 <h2>Sample application structure</h2>
 <pre><code>app
@@ -176,27 +180,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Zip the deployment package</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> zip <span class="at">-9qr</span> statsmodel-package.zip <span class="pp">*</span></span></code></pre></div>
-</div>
-<div id="build-docker-image-and-export-the-deployment-package" class="section level2">
-<h2>Build docker image and export the deployment package</h2>
+<div id="build-docker-image-and-export-the-deployment-package" class="section level3">
+<h3>Build docker image and export the deployment package</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker build <span class="at">--no-cache</span> <span class="at">-t</span> statsmodel-package . <span class="kw">&amp;&amp;</span> </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker run <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/export statsmodel-package cp statsmodel-package.zip /export</span></code></pre></div>
+</div>
 </div>
 <div id="serverless.yml" class="section level2">
 <h2>serverless.yml</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">service:</span> statsmodel</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">provider:</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">name:</span> aws</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">runtime:</span> python3.7</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">deploymentBucket:</span> <span class="op">&lt;</span>S3-BUCKET<span class="op">&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">functions:</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">run_linear_regression:</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">handler:</span> app.run_linear_regression</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">memorySize:</span> 128</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">timeout:</span> 15</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">role:</span> <span class="op">&lt;</span>IAM-ROLE<span class="op">&gt;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">package:</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">artifact:</span> statsmodel-package.zip</span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">provider:</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">name:</span> aws</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">runtime:</span> python3.7</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">deploymentBucket:</span> <span class="op">&lt;</span>S3-BUCKET<span class="op">&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">functions:</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">run_linear_regression:</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">handler:</span> app.run_linear_regression</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">memorySize:</span> 128</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">timeout:</span> 15</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">role:</span> <span class="op">&lt;</span>IAM-ROLE<span class="op">&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="ex">package:</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">artifact:</span> statsmodel-package.zip</span></code></pre></div>
 </div>
 <div id="deploy-function" class="section level2">
 <h2>Deploy function</h2>

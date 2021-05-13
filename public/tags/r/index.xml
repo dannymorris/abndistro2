@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Basic usage of H2O in R for machine learning</title>
+      <link>https://abndistro.com/post/2021/05/11/basic-usage-of-h2o-in-r-for-machine-learning/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/11/basic-usage-of-h2o-in-r-for-machine-learning/</guid>
+      <description>  </description>
+    </item>
+    
+    <item>
       <title>Sample Dockerfile for deploying R Shiny apps on ShinyProxy</title>
       <link>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</link>
       <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>

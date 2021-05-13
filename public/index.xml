@@ -6,7 +6,27 @@
     <description>Recent content in Home on Abnormal Distributions</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic usage of GluonTS for probabilistic, deep learning-based time series forecasting</title>
+      <link>https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-time-series-forecasting-in-python/</link>
+      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-time-series-forecasting-in-python/</guid>
+      <description>View notebook in GitHub - https://github.com/dannymorris/abndistro2/blob/master/notebooks/gluonts.ipynb
+Overview GluonTS is a deep learning-based framework for probabilisitc time series modeling and forecasting. As mentioned in the paper, deep learning models improve upon traditional univariate models (e.g. Arima) with their ability to train a single, global model over an entire collection of time series.
+ Takeaways from my experience getting started  Training and inference for all 152 time series required about 2 minutes in total using the DeepAR estimator and CPUs provided by Google Colab.</description>
+    </item>
+    
+    <item>
+      <title>Basic usage of H2O in R for machine learning</title>
+      <link>https://abndistro.com/post/2021/05/11/basic-usage-of-h2o-in-r-for-machine-learning/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/11/basic-usage-of-h2o-in-r-for-machine-learning/</guid>
+      <description>  </description>
+    </item>
+    
     <item>
       <title>Sample Dockerfile for deploying R Shiny apps on ShinyProxy</title>
       <link>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</link>
@@ -26,6 +46,15 @@
     </item>
     
     <item>
+      <title>My top 6% solution in the Kaggle M5 Forecasting - Accuracy competition using a machine learning ensemble</title>
+      <link>https://abndistro.com/post/2020/07/08/my-top-6-solution-in-the-kaggle-m5-forecasting-accuracy-competition-using-a-machine-learning-ensemble/</link>
+      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2020/07/08/my-top-6-solution-in-the-kaggle-m5-forecasting-accuracy-competition-using-a-machine-learning-ensemble/</guid>
+      <description>Overview Competition overview Forecasting as a supervised machine learning problem General feature engineering Models  One model per product using Random Forests One model per store using XGBoost Model performance with and without ensembling  Summary of my development and evaluation strategy Potential improvements Conclusion   Overview I participated in the M5 Forecasting - Accuracy Kaggle competition, in which the goal was to submit daily forecasts for over 30,000 Walmart products.</description>
+    </item>
+    
+    <item>
       <title>Distributed training using AWS, Python, and boto3</title>
       <link>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</link>
       <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
@@ -33,6 +62,15 @@
       <guid>https://abndistro.com/post/2020/07/03/distributed-training-aws-using-python-and-boto3/</guid>
       <description>Overview I recently participated in the M5 Forecasting - Accuracy Kaggle competition to forecast daily sales for over 30,000 WalMart products. I had some initial struggles processing the data and training models in-memory, so I eventually turned to running distributed training jobs using AWS SageMaker.
 This post outlines the basic steps required to run a distributed machine learning job on AWS using the SageMaker SDK in Python. The steps are broken down into the following:</description>
+    </item>
+    
+    <item>
+      <title>A supervised learning strategy for detecting rare classes using data-centric ensembling</title>
+      <link>https://abndistro.com/post/2020/06/07/a-supervised-learning-strategy-for-detecting-rare-classes-using-data-centric-ensembling/</link>
+      <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2020/06/07/a-supervised-learning-strategy-for-detecting-rare-classes-using-data-centric-ensembling/</guid>
+      <description>Overview A little bit about ensembling Defining the strategy Testing the strategy Pseudocode for training and testing Pseudocode for cross validation Pseudocode for production   Overview This post demonstrates a strategy for rare class learning whereby out-of-sample predictions are made using data-centric ensembling. This strategy is described by Charu Aggarwal in section 7.2 of his book Outlier Analysis. This is an excellent book that presents a ton of interesting material on statistics and modeling in a very readable way.</description>
     </item>
     
     <item>
