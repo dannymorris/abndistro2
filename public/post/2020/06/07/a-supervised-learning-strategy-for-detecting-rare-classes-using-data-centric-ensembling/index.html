@@ -98,36 +98,30 @@ COMPUTE performance metric associated with optimal probability cutoff</code></pr
 <h2>Pseudocode for cross validation</h2>
 <pre><code>READ data
 
-SET number of cross validation iterations
+SET stratified training and testing data
 
-FOR each cross validation iteration
-  SET stratified training and testing splits
-  
-  SET number of ensemble iterations
-  
-  FOR each ensemble iteration 
-    SET downsampled training data 
-    TRAIN model on downsampled data
-    FOR each instance in the testing data
-      COMPUTE positive class predicted probability
-    ENDFOR
-  ENDFOR
-  
+SET number of ensemble iterations
+
+FOR each ensemble iteration 
+  SET downsampled training data 
+  TRAIN model on downsampled data
   FOR each instance in the testing data
-    COMPUTE average positive class predicted probability
-  ENDOR
-  
-  SET array of candidate probability cutoffs
-  
-  FOR each candidate probability cutoff
-    COMPUTE predicted positive class labels for testing data
-    COMPUTE performance metric given predicted and known positive class labels
+    COMPUTE positive class predicted probability
   ENDFOR
-  
-  COMPUTE performance metric associated with optimal probability cutoff
 ENDFOR
 
-COMPUTE average performance metric across all cross validation iterations</code></pre>
+FOR each instance in the testing data
+  COMPUTE average positive class predicted probability
+ENDOR
+
+SET array of candidate probability cutoffs
+
+FOR each candidate probability cutoff
+  COMPUTE predicted positive class labels for testing data
+  COMPUTE performance metric given predicted and known positive class labels
+ENDFOR
+
+COMPUTE performance metric associated with optimal probability cutoff</code></pre>
 </div>
 <div id="pseudocode-for-production" class="section level2">
 <h2>Pseudocode for production</h2>
