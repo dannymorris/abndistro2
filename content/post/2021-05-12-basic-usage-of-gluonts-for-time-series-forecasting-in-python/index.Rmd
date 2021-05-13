@@ -30,7 +30,7 @@ GluonTS is a deep learning-based framework for probabilisitc time series modelin
 The use case shown in this notebook involves jointly training and forecasting 152 time series at monthly intervals. The data are originally in CSV format. 
 The [DeepAR](https://arxiv.org/pdf/1704.04110.pdf) estimator is applied to the training data, and code for a faster [feedforward MLP](https://ts.gluon.ai/api/gluonts/gluonts.model.simple_feedforward.html) alternative is provided for reference at the end.
 
-<script src="https://gist.github.com/dannymorris/7859f4bc04f8665cb93b72d0a2e48711.js"></script>
+<script src="https://gist.github.com/dannymorris/49af9fa607552ab5da9813d0dce8c9ac.js"></script>
 
 ## Pseudocode
 
