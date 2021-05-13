@@ -1,0 +1,20 @@
+---
+title: Basic usage of Apache Sedona and Spark SQL for geospatial data analysis
+author: Danny Morris
+date: '2021-05-13'
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+slug: basic-usage-of-apache-sedona-and-spark-sql-for-geospatial-data-analysis
+categories:
+  - Spark
+  - Geospatial
+  - Python
+tags:
+  - Spark
+  - Geospatial
+  - Python
+---
+
+<script src="https://gist.github.com/dannymorris/f0c945fb5562bb9a59650cbe52c93ba5.js"></script>
