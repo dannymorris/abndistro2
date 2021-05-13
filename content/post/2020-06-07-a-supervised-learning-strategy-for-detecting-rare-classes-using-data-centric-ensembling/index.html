@@ -1,0 +1,141 @@
+---
+title: A supervised learning strategy for detecting rare classes using data-centric
+  ensembling
+author: Danny Morris
+date: '2020-06-07'
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+slug: a-supervised-learning-strategy-for-detecting-rare-classes-using-data-centric-ensembling
+categories:
+  - Data Science
+  - Machine Learning
+  - Outlier Analysis
+tags:
+  - Data Science
+  - Machine Learning
+  - Outlier Analysis
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#a-little-bit-about-ensembling">A little bit about ensembling</a></li>
+<li><a href="#defining-the-strategy">Defining the strategy</a></li>
+<li><a href="#testing-the-strategy">Testing the strategy</a></li>
+<li><a href="#pseudocode-for-training-and-testing">Pseudocode for training and testing</a></li>
+<li><a href="#pseudocode-for-cross-validation">Pseudocode for cross validation</a></li>
+<li><a href="#pseudocode-for-production">Pseudocode for production</a></li>
+</ul>
+</div>
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>This post demonstrates a strategy for rare class learning whereby out-of-sample predictions are made using data-centric ensembling. This strategy is described by <a href="http://charuaggarwal.net/">Charu Aggarwal</a> in section 7.2 of his book <a href="https://www.amazon.com/Outlier-Analysis-Charu-C-Aggarwal/dp/3319475770/ref=pd_cp_14_1?pd_rd_w=8M3qy&amp;pf_rd_p=ef4dc990-a9ca-4945-ae0b-f8d549198ed6&amp;pf_rd_r=3TGSZZ1H5HYKMT0G80Q8&amp;pd_rd_r=f1e3c156-9e78-11e9-801d-cdc96cae2e7b&amp;pd_rd_wg=DXbV0&amp;pd_rd_i=3319475770&amp;psc=1&amp;refRID=3TGSZZ1H5HYKMT0G80Q8">Outlier Analysis</a>. This is an excellent book that presents a ton of interesting material on statistics and modeling in a very readable way.</p>
+</div>
+<div id="a-little-bit-about-ensembling" class="section level2">
+<h2>A little bit about ensembling</h2>
+<p>The basic idea behing ensembling is to make predictions on out-of-sample data by combining the predictions from many models. There are two general approaches to ensembling: model-centric and data-centric. Model-centric ensembling combines predictions from several distinct algorithms (e.g. random forest, logistic regression, etc.). Data-centric ensembling combines predictions from the same algorithm trained on several distinct subsets of the training data. Of course model-centric and data-centric ensembling can be combined through the use of several algorithms trained on several subsets of the training data. In general, ensembling is a robust modeling strategy that reduces prediction variance and improves accuracy. One drawback to ensembling is that training, testing, and deploying an ensemble of models can be complex and time consuming. Another drawback is reduced interpretability since each model in the ensemble may be interpreted differently.</p>
+</div>
+<div id="defining-the-strategy" class="section level2">
+<h2>Defining the strategy</h2>
+<p>The strategy shown in this post is an example of data-centric ensembling applied to binary classification where the classes are imbalanced. The goal is to make accurate out-of-sample predictions by combining predictions from several rounds of training (e.g. 25 rounds). Prior to training, a dedicated out-of-sample testing set is drawn from the available data. The remainder is used for training. In each round of training, a balanced training subsample (subset of the training data) is created by downsampling the negative class to match the size of entire positive class. Predictions are made on the dedicated out-of-sample testing set. Once the training rounds are complete, the predictions from each round are combined by averaging the predicted probabilities for each case in the dedicated out-of-sample testing set.</p>
+<p>This strategy is very efficient due to the use of downsampling, leading to training data sets that are very manageable in size. As a result, this strategy can be repeated many times without being too computationally expensive.</p>
+</div>
+<div id="testing-the-strategy" class="section level2">
+<h2>Testing the strategy</h2>
+<p>It is useful to think about the training strategy as a single data point. One should not draw any grand conclusions about a single data point. Instead, multiple data points are sought to gain a more complete understanding of the data. Likewise, any training strategy should be repeated several times to gain a more complete picture of how the final implementation is expected to work. This is why techniques such as repeated K-fold cross validation exist (to <em>repeat</em> the basic K-fold CV strategy).</p>
+<p>For this reason, we do not want to draw conclusions about a single model, nor should we draw conclusions from a single implementation of the ensemble strategy. Instead, the ensemble strategy in this post is repeated several times in experimental fashion. Another experiment is run that tests a simple, baseline strategy which ignores the ensemble component. The outcomes across all repitions for each experiment are then visualized to better understand how the ensemble strategy would be expected to work in a live setting.</p>
+</div>
+<div id="pseudocode-for-training-and-testing" class="section level2">
+<h2>Pseudocode for training and testing</h2>
+<pre><code>READ data
+
+SET stratified training and testing data
+
+SET number of ensemble iterations
+
+FOR each ensemble iteration 
+  SET downsampled training data 
+  TRAIN model on downsampled data
+  FOR each instance in the testing data
+    COMPUTE positive class predicted probability
+  ENDFOR
+ENDFOR
+
+FOR each instance in the testing data
+  COMPUTE average positive class predicted probability
+ENDOR
+
+SET array of candidate probability cutoffs
+
+FOR each candidate probability cutoff
+  COMPUTE predicted positive class labels for testing data
+  COMPUTE performance metric given predicted and known positive class labels
+ENDFOR
+
+COMPUTE performance metric associated with optimal probability cutoff</code></pre>
+</div>
+<div id="pseudocode-for-cross-validation" class="section level2">
+<h2>Pseudocode for cross validation</h2>
+<pre><code>READ data
+
+SET number of cross validation iterations
+
+FOR each cross validation iteration
+  SET stratified training and testing splits
+  
+  SET number of ensemble iterations
+  
+  FOR each ensemble iteration 
+    SET downsampled training data 
+    TRAIN model on downsampled data
+    FOR each instance in the testing data
+      COMPUTE positive class predicted probability
+    ENDFOR
+  ENDFOR
+  
+  FOR each instance in the testing data
+    COMPUTE average positive class predicted probability
+  ENDOR
+  
+  SET array of candidate probability cutoffs
+  
+  FOR each candidate probability cutoff
+    COMPUTE predicted positive class labels for testing data
+    COMPUTE performance metric given predicted and known positive class labels
+  ENDFOR
+  
+  COMPUTE performance metric associated with optimal probability cutoff
+ENDFOR
+
+COMPUTE average performance metric across all cross validation iterations</code></pre>
+</div>
+<div id="pseudocode-for-production" class="section level2">
+<h2>Pseudocode for production</h2>
+<pre><code>READ data
+
+SET training and inference data
+
+SET number of ensemble iterations
+
+FOR each ensemble iteration 
+  SET downsampled training data 
+  TRAIN model on downsampled data
+  FOR each instance in the inference data
+    COMPUTE positive class predicted probability
+  ENDFOR
+ENDFOR
+
+FOR each instance in the inference data
+  COMPUTE average positive class predicted probability
+ENDOR
+
+SET optimal probability cutoff
+COMPUTE predicted class labels using optimal probability cutoff</code></pre>
+</div>
