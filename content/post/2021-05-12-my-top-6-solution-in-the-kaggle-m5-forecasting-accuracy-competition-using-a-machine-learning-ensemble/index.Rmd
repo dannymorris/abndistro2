@@ -1,0 +1,135 @@
+---
+title: My top 6% solution in the Kaggle M5 Forecasting - Accuracy competition using
+  a machine learning ensemble
+author: Danny Morris
+date: '2020-07-08'
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+slug: my-top-6-solution-in-the-kaggle-m5-forecasting-accuracy-competition-using-a-machine-learning-ensemble
+categories:
+  - Data Science
+  - Machine Learning
+tags:
+  - Data Science
+  - Machine Learning
+---
+
+## Overview
+
+I participated in the [M5 Forecasting - Accuracy Kaggle competition](https://www.kaggle.com/c/m5-forecasting-accuracy), in which the goal was to submit daily forecasts for over 30,000 Walmart products. I developed a solution that landed in the top 6%. I **learned a lot** from this experience and I want to share my general strategy.
+
+## Competition overview
+
+The goal in this competition was to produce accurate point forecasts for over 30,000 Walmart products. The evaluation data (unseen by competitors) spanned 28 days between the months of May and June in 2016. The average product had about 4-5 years of daily sales data available for training. There were over 5,000 teams and individual competitors who submitted predictions.
+
+## Forecasting as a supervised machine learning problem
+
+I decided at the beginning of the competition that I wanted to gain experience treating time series forecasting as a supervised machine learning problem. Unlike traditional time series algorithms, machine learning algorithms require explicit feature engineering to work effectively. I viewed this competition as an opportunity to practice feature engineering.
+
+## General feature engineering
+
+I used the following features in my models:
+
+- Rolling sales statistics: rolling 28-day mean and standard deviation
+- Price: actual price plus indicators for promotion and price increase
+- Date-based features: year, quarter, month, month-day, month-week, weekday
+- SNAP indicators (supplement nutrition assistance program)
+- Holidays (provided by competion): national and local holidays
+- Sporting events: NBA finals, U.S. Open, Horse races, MLB games
+- Product identifiers (item, store, state, category, department)
+
+To produce a 28-day forecast, the rolling sales statistics were lagged by 28 days. The lagged values were used as feature values in the forecast period.
+
+Features provided by competition:
+
+  - Actual price
+  - SNAP indicators
+  - Holidays
+  - Product identifiers
+  
+Features I engineered:
+
+  - Rolling sales statistics
+  - Price promotion and price hike
+  - Date-part features
+  - Sporting events
+
+## Models
+
+My top 6% solution was an ensemble (simple average) of two machine learning approaches, including:
+
+### One model per product using Random Forests
+
+The training data were split by product, resulting in over 30,000 series, and each product was modeled in isolation using a fast Random Forest from the `ranger` package in R. Since products were modeled in isolation, information about other products was ignored during training. The methodology was carried out on a 48-core AWS EC2 instance (c5.12xlarge) using parallel processing. The total training time was $\approx$ 70 minutes. Predictions were generated at the end of each training iteration.
+
+The Random Forests were assigned the following hyperparameters:
+
+  - number of trees = 750
+  - features per tree = 0.5
+  - instances per tree = 0.7
+
+The features in these models were a combination of numeric (rolling sales stats, actual price) and one-hot encoded binary. The one-hot encoded features included the date-based features, price promotion, price hike, SNAP indicators, holidays, and sporting events. The product identifiers were excluded due to redundancy since each product was modeled in isolation. In total, the number of features was $\approx$ 170. 
+
+### One model per store using XGBoost 
+
+The training data were split by store, resulting in 10 subsets of training data. Using AWS Sagemaker and the built-in XGBoost algorithm, I engineered a distributed training pipeline by uploading the distributed data to S3 and launching a distributed training job utilizing 5 EC2 instances. Sagemaker spreads the training data evenly across each training instance, and the XGBoost algorithm is optimized for distributed training. The total training time was $\approx$ 3 hours. Predictions were made using a Sagemaker Batch Transform job after all training had completed.
+
+The XGBoost models were assigned the following hyperparameters:
+
+  - number of trees = 1500
+  - learning rate = 0.1
+  - distribution = poisson
+  - features per tree = 0.8
+  - instances per tree = 0.8
+  - evaluation metric = RMSE
+
+The features in these models were a combination of numeric (rolling stats stats, actual price), one-hot encoded, and label encoded. The one-hot encoded features included sporting events, SNAP indicators, price promotion, and price hike. The label encoded features included date-based features, holidays, and product identifiers. In total, the number of features was $\approx$ 45.
+
+### Model performance with and without ensembling
+
+- One model per product using Random Forest: **0.76** (top 28%)
+
+- One model per store using XGBoost on AWS: **0.77** (top 30%)
+
+- Ensemble via simple average: **0.65** (top 6%)
+
+## Summary of my development and evaluation strategy
+
+Developing and evaluating this solution was difficult due to the sheer volume of data (55+ million rows) and products (30,000+). I learned a lot through trial and error as well as researching existing solutions and their expected performance. I realized that I couldn't possibly develop and evaluate a system for all 30,000 products using preferred strategies such as multiple model comparison, cross validation, and hyperparameter tuning. In light of this, I had to make some decisions to drastically simplify the development process at the expense of extensive testing.
+
+- Draw a small yet diverse sample of 1000 products.
+
+- For each product, reduce the training data by about 20%.
+
+- For each product, limit the testing data to a small 28-day sample corresponding with the final 28 days of the training data.
+
+- Use the H2O machine learning framework on an EC2 instance to train and tune (manually) the Random Forest and gradient boosted models.
+
+- Continue tweaking features and hyperparameters until RMSE on training and testing sets were sufficiently low and in agreement to avoid overfitting (in theory).
+
+## Potential improvements
+
+If I were to compete in this competition again, I would experiement with the following changes:
+
+1. More and/or better features related to weather, economic conditions, natural disasters, elections, etc.
+
+2. Experiment with hierarchical forecasting strategies, particularly the one mentioned [in this paper](https://arxiv.org/abs/1912.00370).
+
+3. Ensemble of simple, traditional models since this strategy worked very well in the M4 Forecasting competition.
+
+4. More extensive evaluation strategy, including hyperparameter tuning using AWS Sagemaker.
+
+## Conclusion
+
+This competition forced me to think about doing machine learning and forecasting at scale. It required a blend of technical and theoretical knowledge to engineer a solution for large volumes of data that generalized well to unseen data. I was very pleased to have discovered a high performing solution through the use of ensembling. 
+
+Despite my previous experience with AWS Sagemaker, I was delighted at how simple and effective it was to engineer the distributed training pipeline. In a production setting, I would highly recommend using AWS for exploring, training and deploying machine learning models at scale.
+
+Finally, ensembling led to the single greatest improvement in performance.
+
+
+
+
+
