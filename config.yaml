@@ -16,9 +16,9 @@ menu:
     - name: Home
       url: ""
       weight: 1
-    - name: Projects
-      url: "projects/"
-      weight: 2
+    # - name: Projects
+    #  url: "projects/"
+    #  weight: 2
     - name: Docs
       url: "post/"
       weight: 3
