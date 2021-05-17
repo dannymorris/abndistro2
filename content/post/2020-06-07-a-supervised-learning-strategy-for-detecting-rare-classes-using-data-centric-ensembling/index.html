@@ -56,50 +56,42 @@ editor_options:
 <h2>Pseudocode for training and testing</h2>
 <pre><code>READ data
 
-SET stratified training and testing data
+SAMPLE stratified training and testing data
 
 SET number of ensemble iterations
 
 FOR each ensemble iteration 
-  SET downsampled training data 
-  TRAIN model on downsampled data
-  FOR each instance in the testing data
-    COMPUTE positive class predicted probability
-  ENDFOR
+  SAMPLE training data via downsampling
+  TRAIN model
+  PREDICT positive class probabilities for testing data
 ENDFOR
 
-FOR each instance in the testing data
-  COMPUTE average positive class predicted probability
-ENDOR
+COMPUTE average predicted positive class probabilities for testing data
 
 SET array of candidate probability cutoffs
 
 FOR each candidate probability cutoff
-  COMPUTE predicted positive class labels for testing data
-  COMPUTE performance metric given predicted and known positive class labels
+  PREDICT class labels for testing data using probability cutoff
+  COMPUTE performance metrics
 ENDFOR
 
-COMPUTE performance metric associated with optimal probability cutoff</code></pre>
+COMPUTE optimal probability cutoff which maximizes performance metric</code></pre>
 </div>
 <div id="pseudocode-for-cross-validation" class="section level2">
 <h2>Pseudocode for cross validation</h2>
 <pre><code>READ data
 
-SET stratified training and testing data
+SAMPLE stratified training and testing data
 
 SET number of ensemble iterations
 
 FOR each ensemble iteration 
-  SET downsampled training data 
-  TRAIN model on downsampled data
-  FOR each instance in the testing data
-    COMPUTE positive class predicted probability
-  ENDFOR
+  SAMPLE training data via downsampling
+  TRAIN model
+  PREDICT positive class probabilities for testing data
 ENDFOR
 
-FOR each instance in the testing data
-  COMPUTE average positive class predicted probability
-ENDOR
+COMPUTE average predicted positive class probabilities for testing data
 
 SET array of candidate probability cutoffs
 
@@ -112,24 +104,22 @@ COMPUTE performance metric associated with optimal probability cutoff</code></pr
 </div>
 <div id="pseudocode-for-production" class="section level2">
 <h2>Pseudocode for production</h2>
-<pre><code>READ data
-
-SET training and inference data
+<pre><code>READ training data
 
 SET number of ensemble iterations
 
 FOR each ensemble iteration 
-  SET downsampled training data 
-  TRAIN model on downsampled data
-  FOR each instance in the inference data
-    COMPUTE positive class predicted probability
-  ENDFOR
+  SAMPLE training data via downsampling
+  TRAIN model
 ENDFOR
 
-FOR each instance in the inference data
-  COMPUTE average positive class predicted probability
-ENDOR
+DEPLOY ensemble object
+
+READ inference data
+
+PREDICT positive class probabilities for inference data
 
 SET optimal probability cutoff
+
 COMPUTE predicted class labels using optimal probability cutoff</code></pre>
 </div>

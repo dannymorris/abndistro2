@@ -37,12 +37,11 @@ The [DeepAR](https://arxiv.org/pdf/1704.04110.pdf) estimator is applied to the t
 The following pseudocode represents the general workflow in the Jupyter notebook.
 
 ```
-IMPORT packages
 READ raw data
 TRANSFORM raw data to wide format where each column is a time series
-SPLIT training and testing data
+PARTITION training and testing data
 TRANSFORM training and testing data to ListDataset format for GluonTS compatibility
-DEFINE estimator (e.g. DeepAR)
+SET GluonTS estimator (e.g. DeepAR)
 TRAIN estimator jointly over all time series in training data
 PREDICT values jointly for all time series in testing data
 PRINT prediction accuracy metrics for each time series
