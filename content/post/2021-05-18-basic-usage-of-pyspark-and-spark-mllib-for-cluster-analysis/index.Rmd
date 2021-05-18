@@ -17,4 +17,4 @@ tags:
   - Machine Learning
 ---
 
-<script src="https://gist.github.com/dannymorris/d70e84584919b479a896e6497077c725.js"></script>
+<script src="https://gist.github.com/dannymorris/dd19a7d6a7132e7d7470df13d0da75bd.js"></script>
