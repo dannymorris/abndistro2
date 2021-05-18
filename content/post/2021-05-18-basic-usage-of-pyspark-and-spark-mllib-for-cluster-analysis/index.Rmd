@@ -1,0 +1,20 @@
+---
+title: Basic usage of PySpark and Spark MLlib for cluster analysis
+author: Danny Morris
+date: '2021-05-18'
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+slug: basic-usage-of-pyspark-and-spark-mllib-for-cluster-analysis
+categories:
+  - Python
+  - Spark
+  - Machine Learning
+tags:
+  - Python
+  - Spark
+  - Machine Learning
+---
+
+<script src="https://gist.github.com/dannymorris/d70e84584919b479a896e6497077c725.js"></script>
