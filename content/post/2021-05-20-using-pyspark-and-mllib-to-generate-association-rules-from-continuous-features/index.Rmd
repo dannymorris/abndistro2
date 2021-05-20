@@ -1,5 +1,5 @@
 ---
-title: Using PySpark and MLlib to generate Association Rules from continuous features
+title: Using PySpark and Spark MLlib to generate Association Rules from continuous features
 author: Danny Morris
 date: '2021-05-20'
 output: 
@@ -19,4 +19,4 @@ tags:
   - Python
 ---
 
-<script src="https://gist.github.com/dannymorris/82a1713a0273980bc92cfa92457c881f.js"></script>
+<script src="https://gist.github.com/dannymorris/65bfd1e920b5c3673d7358cdf9d9753f.js"></script>
