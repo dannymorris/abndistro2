@@ -1,3 +1,3 @@
 ---
-title: Docs
+title: All Posts
 ---

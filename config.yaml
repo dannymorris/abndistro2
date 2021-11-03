@@ -19,10 +19,10 @@ menu:
     # - name: Projects
     #  url: "projects/"
     #  weight: 2
-    - name: Docs
+    - name: All Posts
       url: "post/"
       weight: 3
-    - name: Tags
+    - name: Categories
       url: "tags/"
       weight: 4
     # - name: Subscribe
