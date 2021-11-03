@@ -1,0 +1,66 @@
+---
+title: Reproducible data science environments using Conda and Docker
+author: Danny Morris
+date: '2021-11-02'
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+slug: reproducible-environments-using-conda-and-docker
+categories:
+  - Python
+  - Data Science
+  - Docker
+tags:
+  - Python
+  - Docker
+  - Data Science
+---
+
+## Overview
+
+This post briefly shows how to create reproducible environments for data science workflows using a combination of Conda and Docker. The basic idea is to create a Conda environment for local development then reliably package the environment in a Docker image for reproducibility during code deployments.
+
+## Capture local Conda environment using conda-lock
+
+The key to generating a reproducible development environment is to capture the Conda dependencies using [conda-lock](https://github.com/conda-incubator/conda-lock). `conda-lock` is a lightweight library for generating reproducible lockfiles that recreate environments on multiple operating systems (Linux, Windows, OSX).
+
+```
+# create conda environment
+conda create --name my-env python=3.9
+
+# add conda-forge channel (required to install conda-lock)
+conda config --env --add channels conda-forge
+
+# install conda packages including conda-lock
+conda install <pkgs>
+conda install -c conda-forge conda-lock
+
+# export environment to environment.yml
+conda env export --from-history > environment.yml
+
+# generate lockfiles for linux, windows, and osx
+conda-lock
+```
+
+## Create Docker image from Dockerfile specifying the Conda environment
+
+To reproduce the Conda environment in a Docker image, recreate the Conda environment from the lockfile generated in the previous step.
+
+```
+# base image
+FROM continuumio/miniconda3
+
+# copy the lockfile into the image
+COPY conda-linux-64.lock conda-linux-64.lock
+
+# restore the conda environment from the lockfile
+RUN conda create --name my-env --file conda-linux-64.lock
+
+# copy script into image
+COPY my-script.py
+
+# run script when container starts
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "my-env", "python", "my-script.py"]
+```
+

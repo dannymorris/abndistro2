@@ -1,0 +1,70 @@
+---
+title: Reproducible data science environments using Conda and Docker
+author: Danny Morris
+date: '2021-11-02'
+output: 
+  blogdown::html_page:
+    toc: true
+    highlight: pygments
+slug: reproducible-environments-using-conda-and-docker
+categories:
+  - Python
+  - Data Science
+  - Docker
+tags:
+  - Python
+  - Docker
+  - Data Science
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#capture-local-conda-environment-using-conda-lock">Capture local Conda environment using conda-lock</a></li>
+<li><a href="#create-docker-image-from-dockerfile-specifying-the-conda-environment">Create Docker image from Dockerfile specifying the Conda environment</a></li>
+</ul>
+</div>
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>This post briefly shows how to create reproducible environments for data science workflows using a combination of Conda and Docker. The basic idea is to create a Conda environment for local development then reliably package the environment in a Docker image for reproducibility during code deployments.</p>
+</div>
+<div id="capture-local-conda-environment-using-conda-lock" class="section level2">
+<h2>Capture local Conda environment using conda-lock</h2>
+<p>The key to generating a reproducible development environment is to capture the Conda dependencies using <a href="https://github.com/conda-incubator/conda-lock">conda-lock</a>. <code>conda-lock</code> is a lightweight library for generating reproducible lockfiles that recreate environments on multiple operating systems (Linux, Windows, OSX).</p>
+<pre><code># create conda environment
+conda create --name my-env python=3.9
+
+# add conda-forge channel (required to install conda-lock)
+conda config --env --add channels conda-forge
+
+# install conda packages including conda-lock
+conda install &lt;pkgs&gt;
+conda install -c conda-forge conda-lock
+
+# export environment to environment.yml
+conda env export --from-history &gt; environment.yml
+
+# generate lockfiles for linux, windows, and osx
+conda-lock</code></pre>
+</div>
+<div id="create-docker-image-from-dockerfile-specifying-the-conda-environment" class="section level2">
+<h2>Create Docker image from Dockerfile specifying the Conda environment</h2>
+<p>To reproduce the Conda environment in a Docker image, recreate the Conda environment from the lockfile generated in the previous step.</p>
+<pre><code># base image
+FROM continuumio/miniconda3
+
+# copy the lockfile into the image
+COPY conda-linux-64.lock conda-linux-64.lock
+
+# restore the conda environment from the lockfile
+RUN conda create --name my-env --file conda-linux-64.lock
+
+# copy script into image
+COPY my-script.py
+
+# run script when container starts
+ENTRYPOINT [&quot;conda&quot;, &quot;run&quot;, &quot;--no-capture-output&quot;, &quot;-n&quot;, &quot;my-env&quot;, &quot;python&quot;, &quot;my-script.py&quot;]</code></pre>
+</div>

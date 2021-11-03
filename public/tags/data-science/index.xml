@@ -6,7 +6,26 @@
     <description>Recent content in Data Science on Abnormal Distributions</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using PySpark and Spark MLlib to generate Association Rules from continuous features</title>
+      <link>https://abndistro.com/post/2021/05/20/using-pyspark-and-mllib-to-generate-association-rules-from-continuous-features/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/20/using-pyspark-and-mllib-to-generate-association-rules-from-continuous-features/</guid>
+      <description>   </description>
+    </item>
+    
+    <item>
+      <title>Basic usage of GluonTS for probabilistic, deep learning-based time series forecasting</title>
+      <link>https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-probabilistic-deep-learning-based-time-series-forecasting/</link>
+      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-probabilistic-deep-learning-based-time-series-forecasting/</guid>
+      <description>Overview Notebook Pseudocode Takeaways from my experience getting started   Overview GluonTS is a deep learning-based framework for probabilisitc time series modeling and forecasting. As mentioned in the paper, deep learning models improve upon traditional univariate models (e.g. Arima) with their ability to train a single, global model over an entire collection of time series.
+ Notebook The use case shown in this notebook involves jointly training and forecasting 152 time series at monthly intervals.</description>
+    </item>
+    
     <item>
       <title>Sample Dockerfile for deploying R Shiny apps on ShinyProxy</title>
       <link>https://abndistro.com/post/2021/05/11/sample-dockerfile-for-deploying-r-shiny-apps-on-shinyproxy/</link>

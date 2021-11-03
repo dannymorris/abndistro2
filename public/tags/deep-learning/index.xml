@@ -6,7 +6,17 @@
     <description>Recent content in Deep Learning on Abnormal Distributions</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abndistro.com/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic usage of GluonTS for probabilistic, deep learning-based time series forecasting</title>
+      <link>https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-probabilistic-deep-learning-based-time-series-forecasting/</link>
+      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abndistro.com/post/2021/05/12/basic-usage-of-gluonts-for-probabilistic-deep-learning-based-time-series-forecasting/</guid>
+      <description>Overview Notebook Pseudocode Takeaways from my experience getting started   Overview GluonTS is a deep learning-based framework for probabilisitc time series modeling and forecasting. As mentioned in the paper, deep learning models improve upon traditional univariate models (e.g. Arima) with their ability to train a single, global model over an entire collection of time series.
+ Notebook The use case shown in this notebook involves jointly training and forecasting 152 time series at monthly intervals.</description>
+    </item>
+    
     <item>
       <title>Object detection using AWS, Python, and GluonCV</title>
       <link>https://abndistro.com/post/2019/12/07/object-detection-using-aws-and-gluoncv/</link>
